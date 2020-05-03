@@ -1,14 +1,10 @@
-package hu.littletof.spacexwatcher.network;
+package hu.littletof.spacexwatcher.model;
 
 import java.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
-
-import hu.littletof.spacexwatcher.model.LaunchSite;
-import hu.littletof.spacexwatcher.model.Links2;
-import hu.littletof.spacexwatcher.model.Rocket;
 
 public class UpcomingLaunch   {
 

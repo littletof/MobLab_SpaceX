@@ -3,6 +3,9 @@ package hu.littletof.spacexwatcher.network;
 import java.util.List;
 
 import hu.littletof.spacexwatcher.model.AllLaunch;
+import hu.littletof.spacexwatcher.model.OneLaunch;
+import hu.littletof.spacexwatcher.model.PastLaunch;
+import hu.littletof.spacexwatcher.model.UpcomingLaunch;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
