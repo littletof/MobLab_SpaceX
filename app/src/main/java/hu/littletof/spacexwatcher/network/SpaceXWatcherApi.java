@@ -4,7 +4,8 @@ import java.util.List;
 
 import hu.littletof.spacexwatcher.model.AllLaunch;
 import retrofit2.Call;
-import retrofit2.http.*;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface SpaceXWatcherApi {
 
@@ -49,9 +50,7 @@ public interface SpaceXWatcherApi {
      */
 
     @GET("v3/launches/{flight_number}")
-    Call<OneLaunch> oneLaunch(
-            @Path("flight_number") String flightNumber
-    );
+    Call<OneLaunch> oneLaunch(@Path("flight_number") String flightNumber);
 
 
 }
