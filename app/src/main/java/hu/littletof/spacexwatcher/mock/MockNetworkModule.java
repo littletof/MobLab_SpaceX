@@ -1,4 +1,4 @@
-package hu.littletof.spacexwatcher.network;
+package hu.littletof.spacexwatcher.mock;
 
 import android.content.Context;
 
@@ -6,19 +6,20 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import hu.littletof.spacexwatcher.network.SpaceXWatcherApi;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-public class NetworkModule {
+public class MockNetworkModule {
     private Context context;
 
-    public NetworkModule(Context context) { this.context = context; }
+    public MockNetworkModule(Context context) { this.context = context; }
 
     @Provides
     @Singleton
-    public SpaceXWatcherApi provideSpaceXWatcherApi(Retrofit.Builder retrofitBuilder) {
-        return retrofitBuilder.baseUrl(NetworkConfiguration.SPACEXWATCHER_API_URL).build().create(SpaceXWatcherApi.class);
+    public SpaceXWatcherApi provideSpaceXWatcherApi() {
+        return new MockSpaceXWatcherApi();
     }
 
     @Provides
