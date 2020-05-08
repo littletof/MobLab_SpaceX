@@ -28,8 +28,13 @@ public class LaunchListPresenter extends Presenter<LaunchListScreen> {
             @Override
             public void run() {
                 try {
-                    List a = launchesInteractor.getUpcomingLaunches();
-                    Log.d("me", a.toString());
+
+                    if(screen != null) {
+                        List a = launchesInteractor.getUpcomingLaunches();
+                        screen.showLaunchesList(a);
+                        Log.d("Launches", "Got " + a.size() + " upcoming launches.");
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

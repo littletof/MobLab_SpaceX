@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UpcomingLaunch   {
+public class UpcomingLaunch implements ILaunch{
 
     @SerializedName("flight_number")
     private Integer flightNumber = null;
