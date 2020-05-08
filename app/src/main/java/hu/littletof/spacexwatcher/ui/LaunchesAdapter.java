@@ -1,5 +1,6 @@
 package hu.littletof.spacexwatcher.ui;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -26,18 +28,31 @@ public class LaunchesAdapter<L extends ILaunch> extends RecyclerView.Adapter<Lau
     private List<L> launches;
 
     public static class LaunchViewHolder extends RecyclerView.ViewHolder {
+        ConstraintLayout itemView;
         public TextView missionName;
         public TextView launchDate;
         public TextView launchPlace;
         public ImageView missionImage;
 
+        ConstraintLayout titleView;
+        public TextView title;
+        public ImageView icon;
+
+        Context c;
+
 
         public LaunchViewHolder(View v) {
             super(v);
+            c = v.getContext();
+            itemView = v.findViewById(R.id.item_view);
             missionName = v.findViewById(R.id.mission_name);
             missionImage = v.findViewById(R.id.mission_image);
             launchPlace = v.findViewById(R.id.launch_place);
             launchDate = v.findViewById(R.id.launch_date);
+
+            titleView = v.findViewById(R.id.title_view);
+            title = v.findViewById(R.id.separator_title);
+            icon = v.findViewById(R.id.separator_icon);
         }
     }
 
@@ -57,11 +72,25 @@ public class LaunchesAdapter<L extends ILaunch> extends RecyclerView.Adapter<Lau
     @Override
     public void onBindViewHolder(LaunchViewHolder holder, int position) {
         ILaunch launch = launches.get(position);
-        holder.missionName.setText(launch.getFlightNumber() + " - " + launch.getMissionName());
-        holder.launchPlace.setText("Launch site: " + launch.getLaunchSite().getSiteName());
-        holder.launchDate.setText(launch.getTbd()? "TDB" : DateHelper.getDateFromUTC(launch.getLaunchDateUtc(), "yyyy.MM.dd. HH:mm:ss"));
 
-        Picasso.get().load(launch.getLinks().getMissionPatchSmall()).placeholder(R.drawable.rocket).into(holder.missionImage);
+        if(launch.getLaunchDateUnix() == -9){
+            holder.itemView.setVisibility(View.GONE);
+            holder.titleView.setVisibility(View.VISIBLE);
+
+            holder.title.setText(launch.getMissionName());
+            if(launch.getFlightNumber() != 0) {
+                holder.icon.setImageDrawable(holder.c.getResources().getDrawable(launch.getFlightNumber()));
+            }
+
+        }else {
+            holder.itemView.setVisibility(View.VISIBLE);
+            holder.titleView.setVisibility(View.GONE);
+
+            holder.missionName.setText(launch.getFlightNumber() + " - " + launch.getMissionName());
+            holder.launchPlace.setText("Launch site: " + launch.getLaunchSite().getSiteName());
+            holder.launchDate.setText(launch.getTbd() ? "TDB" : DateHelper.getDateFromUTC(launch.getLaunchDateUtc(), "yyyy.MM.dd. HH:mm:ss"));
+            Picasso.get().load(launch.getLinks().getMissionPatchSmall()).placeholder(R.drawable.rocket).into(holder.missionImage);
+        }
 
     }
 

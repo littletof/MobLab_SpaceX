@@ -25,6 +25,17 @@ public class DateHelper {
         return null;
     }
 
+    public static Date getDate(String utc) {
+        SimpleDateFormat m_ISO8601Local = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        m_ISO8601Local.setTimeZone(TimeZone.getTimeZone("UTC"));
+        try {
+            Date parsed = m_ISO8601Local.parse(utc);
+            return parsed;
+        }catch (ParseException e) {
+            return null;
+        }
+    }
+
     public static String getDateFormat(Date date, String format) {
         DateFormat dateFormat = new SimpleDateFormat(format);
         String strDate = dateFormat.format(date);
