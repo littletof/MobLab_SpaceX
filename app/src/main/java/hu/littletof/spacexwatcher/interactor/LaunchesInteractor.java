@@ -47,7 +47,7 @@ public class LaunchesInteractor {
         Response<List<UpcomingLaunch>> resp = upcomingLaunchesCall.execute();
 
         if(resp.code() != 200) {
-            throw new Exception("Getting upcomingLaunches failed with: " + resp.code());
+            throw new Exception("Getting upcomingLaunches failed with: " + resp.code() + ":" + resp.toString());
         }
 
         return resp.body();

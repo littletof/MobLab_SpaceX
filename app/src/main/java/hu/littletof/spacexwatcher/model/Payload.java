@@ -34,7 +34,7 @@ public class Payload   {
     private Integer payloadMassKg = null;
 
     @SerializedName("payload_mass_lbs")
-    private Integer payloadMassLbs = null;
+    private Double payloadMassLbs = null;
 
     @SerializedName("orbit")
     private String orbit = null;
@@ -123,10 +123,10 @@ public class Payload   {
     }
 
 
-    public Integer getPayloadMassLbs() {
+    public Double getPayloadMassLbs() {
         return payloadMassLbs;
     }
-    public void setPayloadMassLbs(Integer payloadMassLbs) {
+    public void setPayloadMassLbs(Double payloadMassLbs) {
         this.payloadMassLbs = payloadMassLbs;
     }
 
