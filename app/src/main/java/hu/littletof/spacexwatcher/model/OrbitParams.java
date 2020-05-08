@@ -23,13 +23,13 @@ public class OrbitParams   {
     private String eccentricity = null;
 
     @SerializedName("periapsis_km")
-    private Integer periapsisKm = null;
+    private Double periapsisKm = null;
 
     @SerializedName("apoapsis_km")
-    private Integer apoapsisKm = null;
+    private Double apoapsisKm = null;
 
     @SerializedName("inclination_deg")
-    private Integer inclinationDeg = null;
+    private Double inclinationDeg = null;
 
     @SerializedName("period_min")
     private String periodMin = null;
@@ -82,22 +82,22 @@ public class OrbitParams   {
     public void setEccentricity(String eccentricity) {
         this.eccentricity = eccentricity;
     }
-    public Integer getPeriapsisKm() {
+    public Double getPeriapsisKm() {
         return periapsisKm;
     }
-    public void setPeriapsisKm(Integer periapsisKm) {
+    public void setPeriapsisKm(Double periapsisKm) {
         this.periapsisKm = periapsisKm;
     }
-    public Integer getApoapsisKm() {
+    public Double getApoapsisKm() {
         return apoapsisKm;
     }
-    public void setApoapsisKm(Integer apoapsisKm) {
+    public void setApoapsisKm(Double apoapsisKm) {
         this.apoapsisKm = apoapsisKm;
     }
-    public Integer getInclinationDeg() {
+    public Double getInclinationDeg() {
         return inclinationDeg;
     }
-    public void setInclinationDeg(Integer inclinationDeg) {
+    public void setInclinationDeg(Double inclinationDeg) {
         this.inclinationDeg = inclinationDeg;
     }
     public String getPeriodMin() {

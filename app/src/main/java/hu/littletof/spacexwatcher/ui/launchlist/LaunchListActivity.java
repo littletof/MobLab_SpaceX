@@ -3,6 +3,7 @@ package hu.littletof.spacexwatcher.ui.launchlist;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +39,8 @@ public class LaunchListActivity extends AppCompatActivity implements LaunchListS
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         launchesRecycler.setLayoutManager(llm);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(launchesRecycler.getContext(), llm.getOrientation());
+        launchesRecycler.addItemDecoration(dividerItemDecoration);
 
         launches = new ArrayList<>();
         launchesAdapter = new LaunchesAdapter<UpcomingLaunch>(launches);

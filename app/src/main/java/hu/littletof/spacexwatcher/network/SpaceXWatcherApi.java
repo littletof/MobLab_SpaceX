@@ -27,7 +27,7 @@ public interface SpaceXWatcherApi {
      * @return Call<List<PastLaunch>>
      */
 
-    @GET("v3/launches/past")
+    @GET("v3/launches/past?sort=flight_number&order=desc")
     Call<List<PastLaunch>> pastLaunches();
 
     /**
