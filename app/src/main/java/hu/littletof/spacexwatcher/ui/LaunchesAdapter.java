@@ -99,8 +99,10 @@ public class LaunchesAdapter<L extends ILaunch> extends RecyclerView.Adapter<Lau
 
             holder.missionName.setText(launch.getFlightNumber() + " - " + launch.getMissionName());
             holder.launchPlace.setText("Launch site: " + launch.getLaunchSite().getSiteName());
-            holder.launchDate.setText(launch.getTbd() ? "TDB" : DateHelper.getDateFromUTC(launch.getLaunchDateUtc(), "yyyy.MM.dd. HH:mm:ss"));
-            Picasso.get().load(launch.getLinks().getMissionPatchSmall()).placeholder(R.drawable.rocket).into(holder.missionImage);
+            holder.launchDate.setText(DateHelper.getDateFromUTC(launch.getLaunchDateUtc(), "yyyy.MM.dd. HH:mm:ss"));
+            if(launch.getLinks() != null) {
+                Picasso.get().load(launch.getLinks().getMissionPatchSmall()).placeholder(R.drawable.rocket).into(holder.missionImage);
+            }
         }
 
     }

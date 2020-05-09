@@ -15,18 +15,18 @@ import javax.inject.Inject;
 import hu.littletof.spacexwatcher.repository.model.UpcomingLaunch;
 
 public class LaunchesRepository {
-    @Inject
     Context context;
 
     private LaunchesDatabase launchesDatabase;
 
 
-    public LaunchesRepository(){
-        launchesDatabase = Room.databaseBuilder(context, LaunchesDatabase.class, "launches_db").build();
+    public LaunchesRepository(Context context){
+        this.context = context;
+        launchesDatabase = Room.databaseBuilder(context, LaunchesDatabase.class, "launches_db").fallbackToDestructiveMigration().build();
     }
 
     @SuppressLint("StaticFieldLeak")
-    List<UpcomingLaunch> getAllUpcomingLaunches() {
+    public List<UpcomingLaunch> getAllUpcomingLaunches() {
         try {
             return new AsyncTask<Void, Void, List<UpcomingLaunch>>(){
 
@@ -45,7 +45,7 @@ public class LaunchesRepository {
     }
 
     @SuppressLint("StaticFieldLeak")
-    void insertUpcomingLaunch(final UpcomingLaunch upcomingLaunch) {
+    public void insertUpcomingLaunch(final UpcomingLaunch upcomingLaunch) {
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... voids) {
@@ -56,7 +56,7 @@ public class LaunchesRepository {
     }
 
     @SuppressLint("StaticFieldLeak")
-    void insertAllUpcomingLaunches(final List<UpcomingLaunch> upcomingLaunches) {
+    public void insertAllUpcomingLaunches(final List<UpcomingLaunch> upcomingLaunches) {
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... voids) {
@@ -67,7 +67,7 @@ public class LaunchesRepository {
     }
 
     @SuppressLint("StaticFieldLeak")
-    void clearUpcomingLaunches() {
+    public void clearUpcomingLaunches() {
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... voids) {

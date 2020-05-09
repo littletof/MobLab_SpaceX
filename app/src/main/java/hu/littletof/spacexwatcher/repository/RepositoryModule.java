@@ -17,5 +17,5 @@ public class RepositoryModule {
 
     @Provides
     @Singleton
-    public LaunchesRepository provideRepository() {throw new RuntimeException();}
+    public LaunchesRepository provideRepository() { return new LaunchesRepository(context);}
 }
