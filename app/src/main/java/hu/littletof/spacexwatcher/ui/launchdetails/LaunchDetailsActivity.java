@@ -118,7 +118,7 @@ public class LaunchDetailsActivity extends AppCompatActivity implements LaunchDe
             if(l.getTimeline().getEngineChill()!=null) add(new LiveEventElement("Engine chill", new Date(start+l.getTimeline().getEngineChill()*1000)));
             if(l.getTimeline().getPrelaunchChecks()!=null) add(new LiveEventElement("Pre-launch checks", new Date(start+l.getTimeline().getPrelaunchChecks()*1000)));
             if(l.getTimeline().getGoForLaunch()!=null) add(new LiveEventElement("Go for launch", new Date(start+l.getTimeline().getGoForLaunch()*1000)));
-            if(l.getTimeline().getIgnition()!=null) add(new LiveEventElement("Ingition", new Date(start+l.getTimeline().getIgnition()*1000)));
+            if(l.getTimeline().getIgnition()!=null) add(new LiveEventElement("Ignition", new Date(start+l.getTimeline().getIgnition()*1000)));
             if(l.getTimeline().getLiftoff()!=null) add(new LiveEventElement("Liftoff", new Date(start+l.getTimeline().getLiftoff()*1000)));
             if(l.getTimeline().getMaxq()!=null) add(new LiveEventElement("Max q", new Date(start+l.getTimeline().getMaxq()*1000)));
             if(l.getTimeline().getStageSep()!=null) add(new LiveEventElement("Stage separation", new Date(start+l.getTimeline().getStageSep()*1000)));
