@@ -11,7 +11,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import hu.littletof.spacexwatcher.model.ILaunch;
+
 public class DateHelper {
+
+    public static boolean considerLiveLaunch(ILaunch l) {
+        Date now = new Date();
+        return Math.abs(DateHelper.getDate(l.getLaunchDateUtc()).getTime() - now.getTime()) <= 2*60*60*1000;
+    }
 
     public static String getDateFromUTC(String utc, String format) {
         SimpleDateFormat m_ISO8601Local = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");

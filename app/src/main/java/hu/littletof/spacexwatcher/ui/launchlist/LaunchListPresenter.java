@@ -52,10 +52,8 @@ public class LaunchListPresenter extends Presenter<LaunchListScreen> {
         List<UpcomingLaunch> live = new ArrayList<>();
         List<UpcomingLaunch> up = new ArrayList<>();
 
-        Date now = new Date();
-
         for(UpcomingLaunch ul : launches) {
-            if(Math.abs(DateHelper.getDate(ul.getLaunchDateUtc()).getTime() - now.getTime()) <= 2*60*60*1000) {
+            if(DateHelper.considerLiveLaunch(ul)) {
                 live.add(ul);
             } else {
                 up.add(ul);

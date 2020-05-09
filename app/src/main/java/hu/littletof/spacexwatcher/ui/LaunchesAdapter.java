@@ -1,6 +1,7 @@
 package hu.littletof.spacexwatcher.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.util.TimeZone;
 
 import hu.littletof.spacexwatcher.R;
 import hu.littletof.spacexwatcher.model.ILaunch;
+import hu.littletof.spacexwatcher.ui.launchdetails.LaunchDetailsActivity;
 import hu.littletof.spacexwatcher.util.DateHelper;
 
 public class LaunchesAdapter<L extends ILaunch> extends RecyclerView.Adapter<LaunchesAdapter.LaunchViewHolder> {
@@ -65,7 +67,16 @@ public class LaunchesAdapter<L extends ILaunch> extends RecyclerView.Adapter<Lau
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.listitem_launch, parent, false);
 
-        LaunchViewHolder vh = new LaunchViewHolder(v);
+        final LaunchViewHolder vh = new LaunchViewHolder(v);
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ILaunch l = launches.get(vh.getAdapterPosition());
+                v.getContext().startActivity(new Intent(v.getContext(), LaunchDetailsActivity.class).putExtra("flight_number", l.getFlightNumber()));
+            }
+        });
+
         return vh;
     }
 
