@@ -6,5 +6,4 @@ import hu.littletof.spacexwatcher.model.UpcomingLaunch;
 
 public interface LaunchListScreen {
     void showLaunchesList(List<UpcomingLaunch> launches);
-    void updateLaunchesListItem();
 }

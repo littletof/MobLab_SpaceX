@@ -1,6 +1,9 @@
 package hu.littletof.spacexwatcher.ui.launchlist;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -8,18 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import hu.littletof.spacexwatcher.R;
 import hu.littletof.spacexwatcher.SpaceXWatcherApplication;
-import hu.littletof.spacexwatcher.model.ILaunch;
 import hu.littletof.spacexwatcher.model.UpcomingLaunch;
 import hu.littletof.spacexwatcher.ui.LaunchesAdapter;
-import hu.littletof.spacexwatcher.util.DateHelper;
+import hu.littletof.spacexwatcher.ui.prevlaunches.PrevLaunchesActivity;
 
 
 public class LaunchListActivity extends AppCompatActivity implements LaunchListScreen {
@@ -49,6 +49,8 @@ public class LaunchListActivity extends AppCompatActivity implements LaunchListS
         launches = new ArrayList<>();
         launchesAdapter = new LaunchesAdapter<UpcomingLaunch>(launches);
         launchesRecycler.setAdapter(launchesAdapter);
+
+        getSupportActionBar().setTitle("SpaceX Watcher");
     }
 
     @Override
@@ -58,55 +60,32 @@ public class LaunchListActivity extends AppCompatActivity implements LaunchListS
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.upcoming_launches_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.history_mi:
+                startActivity (new Intent(this, PrevLaunchesActivity.class));
+                break;
+        }
+        return true;
+    }
+
+    @Override
     public void showLaunchesList(final List<UpcomingLaunch> newLaunches) {
-        final List<UpcomingLaunch> viewList = separateLiveLaunches(newLaunches);
         runOnUiThread(new Runnable() {
 
             @Override
             public void run() {
                 launches.clear();
-                launches.addAll(viewList);
+                launches.addAll(newLaunches);
                 launchesAdapter.notifyDataSetChanged();
             }
         });
-    }
-
-    private List<UpcomingLaunch> separateLiveLaunches(List<UpcomingLaunch> launches) {
-        List<UpcomingLaunch> live = new ArrayList<>();
-        List<UpcomingLaunch> up = new ArrayList<>();
-
-        Date now = new Date();
-
-        for(UpcomingLaunch ul : launches) {
-            if(Math.abs(DateHelper.getDate(ul.getLaunchDateUtc()).getTime() - now.getTime()) <= 2*60*60*1000) {
-                live.add(ul);
-            } else {
-                up.add(ul);
-            }
-        }
-
-        List<UpcomingLaunch> merged = new ArrayList<>();
-        if(live.size() > 0) {
-            merged.add(titleLaunch("Live launches", R.drawable.live_icon));
-            merged.addAll(live);
-        }
-        merged.add(titleLaunch("Upcoming launches",0));
-        merged.addAll(up);
-
-        return merged;
-    }
-
-    private UpcomingLaunch titleLaunch(String title, int icon) {
-        UpcomingLaunch sep = new UpcomingLaunch();
-        sep.setLaunchDateUnix(-9);
-        sep.setMissionName(title);
-        sep.setFlightNumber(icon);
-        return sep;
-    }
-
-    @Override
-    public void updateLaunchesListItem() {
-
     }
 
     @Override
