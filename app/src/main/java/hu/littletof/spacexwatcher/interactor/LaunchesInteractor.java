@@ -20,17 +20,6 @@ public class LaunchesInteractor {
         this.spaceXWatcherApi = spaceXWatcherApi;
     }
 
-    public List<AllLaunch> getAllLaunches() throws Exception{
-        Call<List<AllLaunch>> allLaunchesCall = spaceXWatcherApi.allLaunches();
-        Response<List<AllLaunch>> resp = allLaunchesCall.execute();
-
-        if(resp.code() != 200) {
-            throw new Exception("Getting allLaunches failed with: " + resp.code());
-        }
-
-        return resp.body();
-    }
-
     public List<PastLaunch> getPastLaunches() throws Exception{
         Call<List<PastLaunch>> pastLaunchesCall = spaceXWatcherApi.pastLaunches();
         Response<List<PastLaunch>> resp = pastLaunchesCall.execute();

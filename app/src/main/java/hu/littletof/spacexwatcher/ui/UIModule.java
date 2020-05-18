@@ -11,7 +11,7 @@ import dagger.Module;
 import dagger.Provides;
 import hu.littletof.spacexwatcher.di.Network;
 
-@Module
+// @Module
 public class UIModule {
     private Context context;
 
@@ -19,12 +19,12 @@ public class UIModule {
         this.context = context;
     }
 
-    @Provides
+    // @Provides
     public Context provideContext() {
         return context;
     }
 
-    @Provides
+    // @Provides
     @Singleton
     @Network
     public Executor provideNetworkExecutor() {

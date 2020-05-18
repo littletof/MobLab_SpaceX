@@ -31,7 +31,7 @@ import hu.littletof.spacexwatcher.util.DateHelper;
 
 public class LaunchDetailsActivity extends AppCompatActivity implements LaunchDetailsScreen {
     @Inject
-    LaunchDetailsPresenter presenter;
+    public LaunchDetailsPresenter presenter;
 
     ImageView missionPatch;
     TextView missionName;

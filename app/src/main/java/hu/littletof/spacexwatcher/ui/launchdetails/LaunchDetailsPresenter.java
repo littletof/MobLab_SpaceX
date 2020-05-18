@@ -14,19 +14,19 @@ import hu.littletof.spacexwatcher.ui.Presenter;
 
 public class LaunchDetailsPresenter extends Presenter<LaunchDetailsScreen> {
 
-    LaunchesInteractor launchesInteractor;
-    Executor networkExecutor;
+    public LaunchesInteractor launchesInteractor;
+    // Executor networkExecutor;
 
     @Inject
-    public LaunchDetailsPresenter(@Network Executor networkExecutor, LaunchesInteractor launchesInteractor){
+    public LaunchDetailsPresenter(/*@Network Executor networkExecutor,*/ LaunchesInteractor launchesInteractor){
         this.launchesInteractor = launchesInteractor;
-        this.networkExecutor = networkExecutor;
+        // this.networkExecutor = networkExecutor;
     }
 
     public void getLaunchDetails(final String flightNumber) {
-        networkExecutor.execute(new Runnable() {
+        /*networkExecutor.execute(new Runnable() {
             @Override
-            public void run() {
+            public void run() {*/
                 try {
 
                     if(screen != null) {
@@ -39,7 +39,7 @@ public class LaunchDetailsPresenter extends Presenter<LaunchDetailsScreen> {
                     e.printStackTrace();
                 }
             }
-        });
-    }
+        // });
+    // }
 
 }

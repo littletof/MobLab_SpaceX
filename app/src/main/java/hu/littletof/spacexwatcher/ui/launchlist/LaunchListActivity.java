@@ -26,7 +26,7 @@ import hu.littletof.spacexwatcher.ui.prevlaunches.PrevLaunchesActivity;
 
 public class LaunchListActivity extends AppCompatActivity implements LaunchListScreen {
     @Inject
-    LaunchListPresenter presenter;
+    public LaunchListPresenter presenter;
 
     private RecyclerView launchesRecycler;
     private List<UpcomingLaunch> launches;

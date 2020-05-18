@@ -14,18 +14,18 @@ import hu.littletof.spacexwatcher.ui.Presenter;
 public class PrevLaunchesPresenter extends Presenter<PrevLaunchesScreen> {
 
     LaunchesInteractor launchesInteractor;
-    Executor networkExecutor;
+    // Executor networkExecutor;
 
     @Inject
-    public PrevLaunchesPresenter(@Network Executor networkExecutor, LaunchesInteractor launchesInteractor){
+    public PrevLaunchesPresenter(/*@Network Executor networkExecutor,*/ LaunchesInteractor launchesInteractor){
         this.launchesInteractor = launchesInteractor;
-        this.networkExecutor = networkExecutor;
+        // this.networkExecutor = networkExecutor;
     }
 
     public void getPreviousLaunches() {
-        networkExecutor.execute(new Runnable() {
+        /*networkExecutor.execute(new Runnable() {
             @Override
-            public void run() {
+            public void run() {*/
                 try {
 
                     if(screen != null) {
@@ -37,8 +37,8 @@ public class PrevLaunchesPresenter extends Presenter<PrevLaunchesScreen> {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-        });
+            /*}
+        });*/
     }
 
 }
