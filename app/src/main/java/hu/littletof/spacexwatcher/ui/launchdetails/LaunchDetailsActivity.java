@@ -15,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ import hu.littletof.spacexwatcher.ui.LaunchesAdapter;
 import hu.littletof.spacexwatcher.util.DateHelper;
 
 public class LaunchDetailsActivity extends AppCompatActivity implements LaunchDetailsScreen {
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Inject
     public LaunchDetailsPresenter presenter;
 
@@ -49,6 +52,7 @@ public class LaunchDetailsActivity extends AppCompatActivity implements LaunchDe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         setContentView(R.layout.activity_launch_details);
 
         Intent intent = getIntent();

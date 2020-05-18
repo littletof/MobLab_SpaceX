@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,8 @@ import hu.littletof.spacexwatcher.ui.launchlist.LaunchListActivity;
 
 
 public class PrevLaunchesActivity extends AppCompatActivity implements PrevLaunchesScreen {
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Inject
     PrevLaunchesPresenter presenter;
 
@@ -35,6 +39,7 @@ public class PrevLaunchesActivity extends AppCompatActivity implements PrevLaunc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         setContentView(R.layout.activity_prev_launches);
 
         launchesRecycler = findViewById(R.id.launches_recycler_view);
