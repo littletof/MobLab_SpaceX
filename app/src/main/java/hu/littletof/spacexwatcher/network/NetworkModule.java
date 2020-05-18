@@ -6,6 +6,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class NetworkModule {
@@ -15,5 +17,15 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public SpaceXWatcherApi provideSpaceXWatcherApi() { throw new RuntimeException();}
+    public SpaceXWatcherApi provideSpaceXWatcherApi(Retrofit.Builder retrofitBuilder) {
+        return retrofitBuilder.baseUrl(NetworkConfiguration.SPACEXWATCHER_API_URL).build().create(SpaceXWatcherApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public Retrofit.Builder provideRetrofit() {
+        return new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create());
+
+    }
 }
