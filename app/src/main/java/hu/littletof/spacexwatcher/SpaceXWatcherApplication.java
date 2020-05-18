@@ -17,7 +17,7 @@ public class SpaceXWatcherApplication extends Application {
 
     public void injectorInit() {
         injector = DaggerSpaceXWatcherApplicationComponent.builder()
-                // .uIModule(new UIModule(this))
+                .uIModule(new UIModule(this))
                 .repositoryModule(new RepositoryModule(this))
                 .networkModule(new NetworkModule(this))
                 .build();

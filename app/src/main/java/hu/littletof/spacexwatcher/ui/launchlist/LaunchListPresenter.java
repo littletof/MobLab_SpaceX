@@ -27,7 +27,7 @@ public class LaunchListPresenter extends Presenter<LaunchListScreen> {
     Executor networkExecutor;
 
     @Inject
-    public LaunchListPresenter(/*@Network Executor networkExecutor, */LaunchesInteractor launchesInteractor, LaunchesRepository launchesRepository){
+    public LaunchListPresenter(@Network Executor networkExecutor, LaunchesInteractor launchesInteractor, LaunchesRepository launchesRepository){
         this.launchesInteractor = launchesInteractor;
         this.networkExecutor = networkExecutor;
         this.launchesRepository = launchesRepository;
@@ -41,9 +41,9 @@ public class LaunchListPresenter extends Presenter<LaunchListScreen> {
         screen.showLaunchesList(separateLiveLaunches(dbList));
 
 
-        /*networkExecutor.execute(new Runnable() {
+        networkExecutor.execute(new Runnable() {
             @Override
-            public void run() {*/
+            public void run() {
                 try {
 
                     if(screen != null) {
@@ -62,8 +62,8 @@ public class LaunchListPresenter extends Presenter<LaunchListScreen> {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-           /* }
-        });*/
+            }
+        });
     }
 
     private List<UpcomingLaunch> separateLiveLaunches(List<UpcomingLaunch> launches) {

@@ -11,7 +11,7 @@ import hu.littletof.spacexwatcher.ui.launchlist.LaunchListActivity;
 import hu.littletof.spacexwatcher.ui.prevlaunches.PrevLaunchesActivity;
 
 @Singleton
-@Component(modules = {/*UIModule.class, */NetworkModule.class, RepositoryModule.class})
+@Component(modules = {UIModule.class, NetworkModule.class, RepositoryModule.class})
 public interface SpaceXWatcherApplicationComponent {
     void inject(PrevLaunchesActivity prevLaunchesActivity);
     void inject(LaunchListActivity launchListActivity);
